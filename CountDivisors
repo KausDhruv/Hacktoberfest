@@ -1,0 +1,34 @@
+class CountDivisors
+{
+    static int getCount(int n)
+    {
+        int count=0;
+        for(int i=1;i<=(n/2);i++)
+        {
+            if(n%i==0)
+                count++;
+        }
+        return count;
+    }
+    public static void main(String args[])
+    {
+        int arr[]=new int[10000];
+        int div[]=new int[10000];
+        for(int i=0;i<10000;i++)
+        {
+            arr[i]=i+1;
+            div[i]=getCount(arr[i]);
+        }
+        int max=div[0];
+        int index=0;
+        for(int i=0;i<10000;i++)
+        {
+            if(div[i]>max)
+            {
+                max=div[i];
+                index=i;
+            }
+        }
+        System.out.println("The one with the most no. of divisors is "+arr[index]+" and the no. of divisors is "+div[index]);
+    }
+}
