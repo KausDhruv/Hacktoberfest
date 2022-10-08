@@ -1,0 +1,101 @@
+class Blanket{
+    protected String size;
+    protected String color;
+    protected String material;
+    protected double price;
+    Blanket(){
+        this.size = "Twin";
+        this.color = "White";
+        this.material = "cotton";
+        this.price = 30.00;
+    }
+    public void setSize(String size) {
+        switch (size) {
+            case "double" -> {this.price += 10.00;this.size = size;}
+            case "queen" -> {this.price += 25.00;this.size = size;}
+            case "king" -> {this.price += 40.00;this.size = size;}
+            default -> {this.price = 30.00;this.size = "Twin" ;}
+        }
+    }
+    public void setColor(String color) {
+        this.color = color;
+    }
+    public void setMaterial(String material) {
+        switch (size) {
+            case "wool" -> {this.price += 20.00;this.material = material;}
+            case "cashmere" -> {this.price += 45.00;this.material = material;}
+            default -> {this.price = 30.00;this.material = material;}
+        }
+    }
+    public String toString()
+    {
+        return "Blanket's size is '"+this.size+"', color is '"+this.color+"', material is '"+this.material+"' and price is $"+this.price;
+    }
+}
+class ElectricBlanket extends Blanket
+{
+    protected int number;
+    protected String shutoff;
+    public ElectricBlanket()
+    {
+        super();
+        this.number = 1;
+        this.shutoff = "no";
+    }
+    public int getNumber() {
+        return number;
+    }
+    public void setNumber(int number) {
+        if(number>1 & number<5)
+        {
+            this.number = number;
+        }
+        else {
+            this.number = 1;
+        }
+    }
+    public String getShutoff() {
+        return shutoff;
+    }
+    public void setShutoff(String shutoff) {
+        if(shutoff.equals("yes"))
+        {
+            this.shutoff = shutoff;
+            this.price += 5.75;
+        }
+        else{
+            this.shutoff = shutoff;
+        }
+    }
+    public String toString()
+    {
+        return super.toString()+" having setting value is "+this.number+" and shutoff feature is present "+this.shutoff;
+    }
+}
+public class TestBlanket{
+    public static void main(String[] args) {
+        Blanket b1 = new Blanket();
+        System.out.println("The default values:");
+        System.out.println(b1.toString());
+        b1.setColor("Orange");
+        System.out.println(b1.toString());
+        b1.setMaterial("wool");
+        b1.setSize("king");
+        System.out.println(b1.toString());
+        b1.setSize("double");
+        System.out.println(b1.toString());
+        b1.setSize("queen");
+        System.out.println(b1.toString());
+        b1.setMaterial("cashmere");
+        System.out.println(b1.toString());
+        ElectricBlanket e1 = new ElectricBlanket();
+        System.out.println("The default values:");
+        System.out.println(e1.toString());
+        e1.setShutoff("yes");
+        System.out.println(e1.toString());
+        e1.setNumber(4);
+        System.out.println(e1.toString());
+        e1.setMaterial("wool");
+        System.out.println(e1.toString());
+    }
+}
